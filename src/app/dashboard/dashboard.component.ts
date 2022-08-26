@@ -9,6 +9,7 @@ import { LineOfBusinessService } from '../lineOfBusiness.service';
 })
 export class DashboardComponent implements OnInit {
   linesOfBusiness: LineOfBusiness[] = [];
+  popularLinesOfBusiness: LineOfBusiness[] = [];
 
   constructor(private lineOfBusinessService: LineOfBusinessService) { }
 
@@ -19,5 +20,9 @@ export class DashboardComponent implements OnInit {
   getLinesOfBusiness(): void {
     this.lineOfBusinessService.getLinesOfBusiness()
       .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness.slice(1, 4));
+  }
+  getPopularLinesOfBusiness(): void {
+    this.lineOfBusinessService.getPopularLinesOfBusiness()
+      .subscribe(popularLinesOfBusiness => this.popularLinesOfBusiness = popularLinesOfBusiness.slice(1, 4));
   }
 }
