@@ -6,13 +6,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { LineOfBusiness } from './LineOfBusiness';
 import { MessageService } from './message.service';
+import {Quote} from './Quote';
 
 
 @Injectable({ providedIn: 'root' })
 export class LineOfBusinessService {
 
   private lineOfBusinessUrl = 'api/linesOfBusiness';  // URL to web api
-
+  private popularLinesOfBusinessUrl = 'api/popularLinesOfBusiness';  // URL to web api
+  private recentQuotesUrl = 'api/recentQuotes';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -29,7 +31,22 @@ export class LineOfBusinessService {
         catchError(this.handleError<LineOfBusiness[]>('getLinesOfBusiness', []))
       );
   }
-
+  /** GET top 2 most popular lines of business from the server */
+  getPopularLinesOfBusiness(): Observable<LineOfBusiness[]> {
+    return this.http.get<LineOfBusiness[]>(this.popularLinesOfBusinessUrl)
+      .pipe(
+        tap(_ => this.log('fetched most popular lines of business')),
+        catchError(this.handleError<LineOfBusiness[]>('getPopularLinesOfBusiness', []))
+      );
+  }
+  /** GET recent quotes from the server */
+  getRecentQuotes(): Observable<Quote[]> {
+    return this.http.get<Quote[]>(this.recentQuotesUrl)
+      .pipe(
+        tap(_ => this.log('fetched recent quotes')),
+        catchError(this.handleError<Quote[]>(                                                                                                                                                                                                                                                             'getRecentQuotes', []))
+      );
+  }
   /** GET line of business by id. Return `undefined` when id not found */
   getLineOfBusinessNo404<Data>(id: number): Observable<LineOfBusiness> {
     const url = `${this.lineOfBusinessUrl}/?id=${id}`;

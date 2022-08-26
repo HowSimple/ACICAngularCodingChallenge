@@ -10,18 +10,19 @@ import { LineOfBusinessService } from '../lineOfBusiness.service';
 })
 export class LineOfBusinessComponent implements OnInit {
   linesOfBusiness: LineOfBusiness[] = [];
-
-  constructor(private lineOfBusinessService: LineOfBusinessService) { } 
-
-  ngOnInit() {
+  popularLinesOfBusiness: LineOfBusiness[] = [];
+  constructor(private lineOfBusinessService: LineOfBusinessService) { }
+    ngOnInit() {
     this.getLinesOfBusiness();
   }
-
   getLinesOfBusiness(): void {
     this.lineOfBusinessService.getLinesOfBusiness()
     .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness);
   }
-
+  getPopularLinesOfBusiness(): void {
+    this.lineOfBusinessService.getPopularLinesOfBusiness()
+      .subscribe(popularLinesOfBusiness => this.popularLinesOfBusiness = popularLinesOfBusiness);
+  }
   add(name: string, description: string): void {
     name = name.trim();
     if (!name) { return; }
@@ -30,7 +31,6 @@ export class LineOfBusinessComponent implements OnInit {
         this.linesOfBusiness.push(lineOfBusiness);
       });
   }
-
   delete(lineOfBusiness: LineOfBusiness): void {
     this.linesOfBusiness = this.linesOfBusiness.filter(lob => lob !== lineOfBusiness);
     this.lineOfBusinessService.deleteLineOfBusiness(lineOfBusiness.id).subscribe();
