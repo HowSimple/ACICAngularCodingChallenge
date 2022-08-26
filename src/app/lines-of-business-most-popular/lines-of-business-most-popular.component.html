@@ -1,0 +1,9 @@
+<h2>Popular services</h2>
+<div class="recentQuotes">
+  <div *ngFor="let lineOfService of this.popularLinesOfBusiness">
+    <a routerLink="/detail/{{lineOfService.id}}">
+      Line-of-business name: {{lineOfService.name}} </a>
+
+    Description: <span>{{lineOfService.description}}</span>
+  </div>
+</div>
