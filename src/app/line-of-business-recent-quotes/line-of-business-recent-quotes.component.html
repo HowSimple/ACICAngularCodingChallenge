@@ -1,13 +1,17 @@
 <h2>Recent Quotes</h2>
 <table *ngIf="linesOfBusiness" class="recentQuotes">
-  <tr *ngFor="let quote of recentQuotes">
+  <tr>
+    <th>Quote#</th>
+    <th>Service</th>
+  </tr>
+  <tr *ngFor="let quote of recentQuotes.slice(0,this.numberOfQuotesDisplayed)">
     <td>
-      Number:<a routerLink="/detail/{{quote.lineOfBusiness}}">
-      <span>{{quote.quoteNumber}}</span>
-    </a>
+      {{quote.quoteNumber}}
     </td>
     <td>
-      Line-of-business:{{getLineOfService(quote.lineOfBusiness).name}}
+      <a routerLink="/detail/{{quote.lineOfBusiness}}">
+        {{getLineOfService(quote.lineOfBusiness).name}}
+      </a>
     </td>
   </tr>
 </table>

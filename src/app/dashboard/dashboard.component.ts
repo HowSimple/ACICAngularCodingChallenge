@@ -21,8 +21,4 @@ export class DashboardComponent implements OnInit {
     this.lineOfBusinessService.getLinesOfBusiness()
       .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness.slice(1, 4));
   }
-  getPopularLinesOfBusiness(): void {
-    this.lineOfBusinessService.getPopularLinesOfBusiness()
-      .subscribe(popularLinesOfBusiness => this.popularLinesOfBusiness = popularLinesOfBusiness.slice(1, 4));
-  }
 }

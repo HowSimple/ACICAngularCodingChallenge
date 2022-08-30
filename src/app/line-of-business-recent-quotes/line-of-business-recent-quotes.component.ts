@@ -12,6 +12,7 @@ import {LineOfBusiness} from '../LineOfBusiness';
 export class LineOfBusinessRecentQuotesComponent implements OnInit {
   recentQuotes!: Quote[];
   linesOfBusiness!: LineOfBusiness[];
+  numberOfQuotesDisplayed = 5;
   constructor(private lineOfBusinessService: LineOfBusinessService) {
   }
 
