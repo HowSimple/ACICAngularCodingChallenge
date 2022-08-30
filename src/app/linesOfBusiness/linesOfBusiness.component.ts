@@ -17,11 +17,7 @@ export class LineOfBusinessComponent implements OnInit {
   }
   getLinesOfBusiness(): void {
     this.lineOfBusinessService.getLinesOfBusiness()
-    .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness);
-  }
-  getPopularLinesOfBusiness(): void {
-    this.lineOfBusinessService.getPopularLinesOfBusiness()
-      .subscribe(popularLinesOfBusiness => this.popularLinesOfBusiness = popularLinesOfBusiness);
+      .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness);
   }
   add(name: string, description: string): void {
     name = name.trim();

@@ -27,11 +27,7 @@ export class LinesOfBusinessMostPopularComponent implements OnInit {
       .subscribe(recentQuotes => this.recentQuotes = recentQuotes);
   }
   get popularLinesOfBusiness(): LineOfBusiness[] {
-    const quoteCounts = countBy(
-      this.recentQuotes,
-      quote => quote.lineOfBusiness
-    );
-    const res = [...
+    const quoteCounts = [...
       this.recentQuotes.reduce((Map, { lineOfBusiness }) => {
         if (Map.has(lineOfBusiness)) {
           Map.get(lineOfBusiness).count++;
@@ -42,14 +38,12 @@ export class LinesOfBusinessMostPopularComponent implements OnInit {
       }, new Map())
         .values()
     ];
-    const topCounts = orderBy(res, 'count', 'desc');
+    const topCounts = orderBy(quoteCounts, 'count', 'desc');
     const topLines = take(topCounts, 2).map(x => this.linesOfBusiness.find(line => line.id === x.lineOfBusiness) || ({
         id: 0,
         name: 'Not Found',
         description: 'Not Found',
       } as LineOfBusiness)
-
-
     );
     return topLines;
   }

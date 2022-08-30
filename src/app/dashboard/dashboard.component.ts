@@ -8,17 +8,8 @@ import { LineOfBusinessService } from '../lineOfBusiness.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  linesOfBusiness: LineOfBusiness[] = [];
-  popularLinesOfBusiness: LineOfBusiness[] = [];
-
   constructor(private lineOfBusinessService: LineOfBusinessService) { }
 
   ngOnInit() {
-    this.getLinesOfBusiness();
-  }
-
-  getLinesOfBusiness(): void {
-    this.lineOfBusinessService.getLinesOfBusiness()
-      .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness.slice(1, 4));
   }
 }

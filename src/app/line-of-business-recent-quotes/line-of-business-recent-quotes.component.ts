@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {InMemoryDataService} from '../in-memory-data.service';
 import {LineOfBusinessService} from '../lineOfBusiness.service';
 import { Quote } from '../Quote';
 import {LineOfBusiness} from '../LineOfBusiness';
